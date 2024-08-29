@@ -2,7 +2,7 @@
 % Konfigurasi LaTeX untuk laporan thesis/ta/skripsi/sp sesuai dengan aturan UI tahun 2017
 %
 % @author  Andreas Febrian
-% @version 2.1.2
+% @version 2.2.0
 % @edit by Ichlasul Affan
 
 % Terima kasih untuk:
@@ -140,7 +140,7 @@
 % Anda bisa menambahkan dukungan untuk format sitasi lainnya jika diperlukan.
 %% APA (sitasi dalam dan luar paragraf).
 \usepackage[natbibapa]{apacite}
-\bibliographystyle{apacite}
+\bibliographystyle{apalike}
 %% IEEE
 % \usepackage{natbib}
 % \bibliographystyle{IEEEtran}
@@ -188,8 +188,7 @@
 % \newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
 % \addtocontents{lot}{\protect\noaddvspace}
 
-
-% Link page numbers in TOC
+% Link setiap item daftar isi (ToC) ke halaman terkait
 \makeatletter
 \def\contentsline#1#2#3#4{%
   \ifx\\#4\\%
@@ -205,12 +204,39 @@
     }%
   \fi
 }
+
+% Pengaturan paragraf
+\setlength{\parindent}{0pt}
+\setlength{\parskip} {12pt}
+
+% Atur bullet dan numbering agar tidak ada indentasi awal.
+\setlist[itemize]{nosep,leftmargin=*}
+\setlist[enumerate]{nosep,leftmargin=*}
+
+% Atur formatting subbab, subsubbab, dst.
 \renewcommand\section{\@startsection {section}{1}{\z@}%
-                                  {-3.5ex \@plus -1ex \@minus -.2ex}%
-                                  {2.3ex \@plus.2ex}%
-                                  {\large\bfseries}}
+	{0pt}%
+	{1pt \@plus -1pt \@minus 1pt}%
+	{\normalfont\fontsize{12}{15}\bfseries}}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
+	{0pt}%
+	{1pt \@plus -1pt \@minus 1pt}%
+	{\normalfont\fontsize{12}{15}\bfseries}}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}%
+	{0pt}%
+	{1pt \@plus -1pt \@minus 1pt}%
+	{\normalfont\fontsize{12}{15}\bfseries}}
+\renewcommand\paragraph{\@startsection {paragraph}{4}{\z@}%
+	{0pt}%
+	{1pt \@plus -1pt \@minus 1pt}%
+	{\normalfont\fontsize{12}{15}\bfseries}}
+\renewcommand\subparagraph{\@startsection {subparagraph}{5}{\z@}%
+	{0pt}%
+	{1pt \@plus -1pt \@minus 1pt}%
+	{\normalfont\fontsize{12}{15}\bfseries}}
+
 \makeatother
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{3}
 
 % Command untuk membuat halaman-halaman intro (daftar isi, daftar gambar, etc.) tampak ALL CAPS pada entri daftar isi.
@@ -228,30 +254,69 @@
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
+	\fancyfoot[C]{\thepage}
+	\renewcommand{\headrulewidth}{0.0pt}
+	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[LO,RE]{}
+	\renewcommand{\footrulewidth}{0.0pt}
+}
+
+\fancypagestyle{onlypage}{
+	\fancyhead[L]{}
+	\fancyhead[C]{}
+	\fancyhead[R]{}
 	\fancyfoot[L]{}
 	\fancyfoot[C]{\thepage}
-	\fancyfoot[R]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[R]{}
 }
+
 \fancypagestyle{standard}{
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
-	\fancyfoot[L]{}
 	\fancyfoot[C]{}
 	\renewcommand{\headrulewidth}{0.0pt}
-	\fancyfoot[R]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[LO,RE]{}
 	\renewcommand{\footrulewidth}{0.0pt}
 }
+
+\fancypagestyle{abs}{
+	\fancyhead[L]{}
+	\fancyhead[C]{}
+	\fancyhead[R]{}
+	\fancyfoot[C]{\thepage}
+	\renewcommand{\headrulewidth}{0.0pt}
+	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[LO,RE]{}
+	\renewcommand{\footrulewidth}{0.0pt}
+}
+
 \fancypagestyle{first-pages}{
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
-	\fancyfoot[L]{}
 	\fancyfoot[C]{\thepage}
-	\fancyfoot[R]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+    \renewcommand{\headrulewidth}{0.0pt}
+	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\renewcommand{\footrulewidth}{0.0pt}
 }
 
-% Add new chapter page count
+\fancypagestyle{last}{
+	\fancyhead[L]{}
+	\fancyhead[C]{}
+	\fancyhead[R]{}
+	\fancyfoot[C]{\thepage}
+	\renewcommand{\headrulewidth}{0.0pt}
+	\fancyfoot[LO,RE]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[LE,RO]{}
+	\renewcommand{\footrulewidth}{0.0pt}
+}
+
+% Tambah chapter page counter
+%
+% Untuk menentukan apakah suatu bab harus ditambahkan halaman kosong atau tidak,
+% ketika dicetak bolak-balik
 \newcounter{chapterpagecount}[chapter] % Reset with an increment in chapter
 \EveryShipout{\stepcounter{chapterpagecount}} % Step every page
 
@@ -340,11 +405,6 @@
 	\renewcommand{\BRetrievedFrom}{Diakses dari }
 	\renewcommand{\BRetrieved}[1]{Diakses pada tanggal {#1}, dari\ }
 }
-\AtBeginDocument{
-    \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
-    \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
-}
-
 
 %-----------------------------------------------------------------------------%
 % Perintah Baru
@@ -356,13 +416,17 @@
 
 % Perintah untuk membuat huruf tercetak miring. (alias)
 \newcommand{\f}[1]{\textit{#1}}
+
 % Perintah untuk huruf tercetak tebal dan miring.
 \newcommand{\bi}[1]{\textbf{\textit{#1}}}
+
 % Perintah untuk huruf tercetak tebal.
 \newcommand{\bo}[1]{\textbf{#1}}
+
 % Perintah untuk mencetak tebal di persamaan matematis
 \newcommand{\m}[1]{\boldmath{ \( #1 \)}}
 \newcommand{\mc}[1]{\boldmath{ \[ #1 \]}}
+
 % Perintah untuk cetak in-line code
 \newcommand{\code}[1]{\texttt{#1}}
 
@@ -406,12 +470,22 @@
 \newcommand{\Var}[2]{\MakeUppercase{\gdef\noexpand#1{#2}}}
 
 % Tambahkan kata-kata yang dimasukan kedalam Table of Contents.
-\newcommand{\addChapter}[1]{\phantomsection \addcontentsline{toc}{chapter}{#1}}
+\newcommand{\addChapter}[1]{ % Dengan mereset chapter page counter
+	\setcounter{chapterpagecount}{0}
+	\addtocontents{toc}{\protect\addvspace{-10pt}}
+	\phantomsection
+	\addcontentsline{toc}{chapter}{\uppercase{#1}}
+}
+\newcommand{\addChapterNoCount}[1]{ % Tanpa mereset chapter page counter
+	\addtocontents{toc}{\protect\addvspace{-10pt}}
+	\phantomsection
+	\addcontentsline{toc}{chapter}{\uppercase{#1}}
+}
 
 % Alias untuk perintah \LaTeX
 \newcommand{\latex}{\LaTeX}
-%
-% Untuk mematikan kalimat bold di table of content
+
+% Untuk menyalakan dan mematikan kalimat bold di table of content
 \newcommand*{\enableboldchapterintoc}{%
   \addtocontents{toc}{\string\renewcommand{\protect\cftchapfont}{\protect\normalfont\protect\bfseries}}
   \addtocontents{toc}{\string\renewcommand{\protect\cftchappagefont}{\protect\normalfont\protect\bfseries}}
@@ -422,38 +496,17 @@
   \addtocontents{toc}{\string\renewcommand{\protect\cftchapfont}{\protect\normalfont}}
   \addtocontents{toc}{\string\renewcommand{\protect\cftchapleader}{\protect\normalfont\protect\cftdotfill{\protect\cftsecdotsep}}}%
 }
+
 % Alias untuk menambahkan halaman baru setiap akhir bab
 \newcommand{\clearchapter}{
+	\clearpage
 	\ifodd\thechapterpagecount
 		\null
 		\thispagestyle{empty}
 		\addtocounter{page}{-1}
 		\newpage
-	\else
 	\fi
 	\setoddevenheader
-}
-\newcommand{\naiveoddclearchapter}{
-	\clearpage
-	\checkoddpage
-	\ifoddpage
-		\null
-		\thispagestyle{empty}
-		\addtocounter{page}{-1}
-		\newpage
-	\else
-	\fi
-}
-\newcommand{\naiveevenclearchapter}{
-	\clearpage
-	\checkoddpage
-	\ifoddpage
-	\else
-		\null
-		\thispagestyle{empty}
-		\addtocounter{page}{-1}
-		\newpage
-	\fi
 }
 \newcommand{\forceclearchapter}{
 	\clearpage
@@ -475,10 +528,11 @@
 
 % Untuk membuat halaman kosong
 \newcommand\blankpage{
-	\null
+	\clearpage
 	\thispagestyle{empty}
 	\addtocounter{page}{-1}
-	\newpage
+	\null
+	\clearpage
 }
 
 % Untuk membuat caption gambar/tabel dengan sumber
@@ -486,6 +540,7 @@
 	\caption[{#1}]{#1\par
 		\footnotesize\textbf{Sumber:} #2\par}
 }
+
 % Caption sumber untuk gambar/tabel lintas halaman
 \newcommand*{\captionsourcecont}[2]{
 \caption[]{#1 (sambungan)\par
@@ -501,7 +556,9 @@
 % - https://tex.stackexchange.com/questions/61086/how-to-create-my-own-list-of-things
 % - https://tex.stackexchange.com/questions/71162/reset-section-numbering-between
 %-----------------------------------------------------------------------------%
+%
 % Daftar Equation (Persamaan Matematis)
+%
 \newcommand{\listofequname}{Daftar \equ}
 \newlistof{equ}{loe}{\listofequname}
 \newcommand{\captionequ}[1]
@@ -516,7 +573,9 @@
 \renewcommand\cftequaftersnum{.}
 \renewcommand\cftequpresnum{\equ~}
 
+%
 % Daftar Kode Program
+%
 \newcommand{\listoflistings}{
 	\begingroup
 	\let\oldnumberline\numberline
@@ -539,21 +598,25 @@
 % Berkas auxiliary: thesis.loth -> mohon masukkan di gitignore.
 % Uncomment to use this sample.
 % Untuk menggunakan dengan istilah lain, cukup ganti frasa "Sesuatu", "thing", dan "loth".
-% Misal: Aturan Transformasi (transformationrule,thesis.lotr): "Sesuatu" -> "Aturan Transformasi", "thing" -> "transformationrule", "loth" -> "lotr"
+% Misal:
+% Aturan Transformasi (transformationrule, thesis.lotr)
+% - "Sesuatu" -> "Aturan Transformasi"
+% - "thing" -> "transformationrule"
+% - "loth" -> "lotr"
 %
 
 %\newcommand{\thing}{Sesuatu}
 %\newcommand{\listofthingname}{Daftar \thing}
 %\newlistof{thing}{loth}{\listofthingname}
 %\newcommand{\captionthing}[1]
-%{%
+%{
 %	\refstepcounter{thing}
 %	\caption*{\textbf{\thing~\thechapter.\thething:} #1}
 %	\addcontentsline{loth}{thing}
 %	{\protect\numberline{\thechapter.\thething}{\ignorespaces #1}}\par
 %}
 %\newcommand{\captionsourcething}[2]
-%{%
+%{
 %	\refstepcounter{thing}
 %	\caption*{\textbf{\thing~\thechapter.\thething:} #1\par
 %		\footnotesize\textbf{Sumber:} #2\par}
@@ -565,25 +628,61 @@
 %\renewcommand\cftthingaftersnum{.}
 %\renewcommand\cftthingpresnum{\thing~}
 
+%
 % Daftar Lampiran
+%
 \newcommand{\listofappendixname}{Daftar \apdx}
 \newlistof{appendix}{lox}{\listofappendixname}
 \newcommand{\addappendix}[1]
-{%
-\refstepcounter{appendix}
-\addcontentsline{lox}{appendix}
-{\apdx~\protect\numberline{\theappendix.}{\ignorespaces #1}}\par
+{
+	\refstepcounter{appendix}
+	\addcontentsline{lox}{appendix}
+	{\apdx~\protect\numberline{\theappendix.}{\ignorespaces #1}}\par
 }
 
-% Pengaturan prefiks entri daftar konten (tabel, gambar)
-\renewcommand{\cftfigindent}{0pt}
-\renewcommand{\cftfignumwidth}{70pt}
-\renewcommand{\cftfigaftersnum}{.}
-\renewcommand{\cftfigpresnum}{\pic~}
-\renewcommand{\cfttabindent}{0pt}
-\renewcommand{\cfttabnumwidth}{60pt}
-\renewcommand{\cfttabaftersnum}{.}
-\renewcommand{\cfttabpresnum}{\tab~}
+
+%
+% Shortcut command untuk membuat halaman daftar
+%
+\newcommand{\addDefaultListPage}[1]
+{
+	\addtocontents{toc}{\protect\addvspace{-10pt}}
+	\CAPinToC % All entries in ToC will be CAPITALIZED from here on
+	\phantomsection %hack to make them clickable
+	\singlespacing
+	#1
+	\setstretch{1.4}
+}
+\newcommand{\addCustomListPage}[2]
+{
+	\addChapterNoCount{#2}
+	\singlespacing
+	#1
+	\setstretch{1.4}
+}
+
+%
+% Pengaturan prefiks entri daftar konten default (daftar isi, tabel, gambar)
+%
+\AtBeginDocument{
+	% Pengaturan Daftar Isi
+	\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
+	\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+	\renewcommand{\cftchappresnum}{\chaptername~}
+	\renewcommand{\cftchapnumwidth}{45pt}
+	
+	% Pengaturan Daftar Gambar
+	\renewcommand{\cftfigindent}{0pt}
+	\renewcommand{\cftfignumwidth}{70pt}
+	\renewcommand{\cftfigaftersnum}{.}
+	\renewcommand{\cftfigpresnum}{\pic~}
+	
+	% Pengaturan Daftar Tabel
+	\renewcommand{\cfttabindent}{0pt}
+	\renewcommand{\cfttabnumwidth}{60pt}
+	\renewcommand{\cfttabaftersnum}{.}
+	\renewcommand{\cfttabpresnum}{\tab~}
+}
 
 
 
@@ -627,11 +726,11 @@
 
 % Japanese Support
 % Usage: \begin{japanese} ... japanese text ... \end{japanese}
-\newenvironment{japanese}
-	{\begin{CJK}{UTF8}{}
-		\CJKfamily{min}
-		\CJKtilde}
-	{\end{CJK}}
+%\newenvironment{japanese}
+%	{\begin{CJK}{UTF8}{}
+%		\CJKfamily{min}
+%		\CJKtilde}
+%	{\end{CJK}}
 
 % Korean Support
 % Usage: \begin{korean} ... korean text ... \end{korean}

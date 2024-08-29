@@ -508,31 +508,60 @@
     }
   }
 
-  %%%%%%% CONNY DEF- revised
+%%%%%%% CONNY DEF- revised (TA UI 2017) v1.0.3
+
+\DeclareOption{ConnyRevisedOld}{%
+	\ChNameUpperCase
+	\ChTitleUpperCase
+	\ChNameVar{\centering\large\rm\bfseries}
+	\ChNumVar{\bfseries}
+	\ChTitleVar{\centering\large\rm\bfseries}
+	%\ChRuleWidth{2pt}
+
+	\renewcommand{\DOCH}{%
+		%\vskip -0.5\baselineskip
+		\CNV\FmN{\@chapapp}\space \CNoV\thechapter
+		\par\nobreak
+		%\vskip -0.5\baselineskip
+	}
+	\renewcommand{\DOTI}[1]{%
+		%\mghrulefill{\RW}\par\nobreak
+		\CTV\FmTi{#1}\par\nobreak
+		\vskip 20\p@
+	}
+	\renewcommand{\DOTIS}[1]{%
+		%\mghrulefill{\RW}\par\nobreak
+		\CTV\FmTi{#1}\par\nobreak
+		\vskip 10\p@
+	}
+}
+
+%%%%%%% CONNY DEF- revised (TA UI 2017) v2.2.0
 
 \DeclareOption{ConnyRevised}{%
   \ChNameUpperCase
   \ChTitleUpperCase
-  \ChNameVar{\centering\large\rm\bfseries}
-  \ChNumVar{\large\bfseries}
-  \ChTitleVar{\centering\large\rm\bfseries}
+  \ChNameVar{\singlespacing\centering\rm\bfseries}
+  \ChNumVar{\rm\bfseries}
+  \ChTitleVar{\singlespacing\centering\rm\bfseries}
   %\ChRuleWidth{2pt}
 
   \renewcommand{\DOCH}{%
-    %\vskip -0.5\baselineskip
-    \CNV\FmN{\@chapapp}\space \CNoV\thechapter
+  	\vspace*{-4.5em}
+    \CNV\FmN{\@chapapp}\space\CNoV
+  	\vspace*{-1em}
+  	\thechapter
     \par\nobreak
-    %\vskip -0.5\baselineskip
+    \vskip -0.5\baselineskip
    }
   \renewcommand{\DOTI}[1]{%
-    %\mghrulefill{\RW}\par\nobreak
     \CTV\FmTi{#1}\par\nobreak
     \vskip 20\p@
     }
   \renewcommand{\DOTIS}[1]{%
-    %\mghrulefill{\RW}\par\nobreak
+  	\vspace*{-4em}
     \CTV\FmTi{#1}\par\nobreak
-    \vskip 10\p@
+    \vspace*{-1em}
     }
   }
 

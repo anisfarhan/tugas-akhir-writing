@@ -2,7 +2,7 @@
 % Template Laporan Skripsi/Thesis Universitas Indonesia
 %
 % @author  Ichlasul Affan, Azhar Kurnia
-% @version 2.1.3
+% @version 2.2.0
 %
 % Dokumen ini dibuat berdasarkan standar IEEE dalam membuat class untuk
 % LaTeX dan konfigurasi LaTeX yang digunakan Fahrurrozi Rahman ketika
@@ -18,11 +18,11 @@
 \documentclass[12pt, a4paper, onecolumn, twoside, final]{report}
 \raggedbottom
 
+\usepackage[none]{hyphenat}
 % Load konfigurasi LaTeX untuk tipe laporan thesis
 \usepackage{_internals/uithesis}
 %
-
-
+\UseRawInputEncoding
 % Load konfigurasi khusus untuk laporan yang sedang dibuat
 \input{config/settings}
 % Daftar pemenggalan suku kata dan istilah dalam LaTeX
@@ -32,70 +32,75 @@
 
 % Awal bagian penulisan laporan
 \begin{document}
-%
-% Sampul Laporan
-\include{_internals/sampul}
-\forceclearchapter
 
 %
-% Gunakan penomeran romawi
+% Sampul Laporan
+%
+\include{_internals/sampul}
+\ifodd\thechapterpagecount\forceclearchapter\fi
+
+%
+% Gunakan penomoran romawi untuk nomor halaman
+%
 \pagenumbering{roman}
 %
-% Menghilangkan penebalan pada huruf-huruf table of content
-% dari halaman judul hingga daftar lampiran
-\disableboldchapterintoc
+
 %
 % load halaman judul dalam
 \strcompare{Kampus Merdeka}{\type}{} {
-	\addChapter{HALAMAN JUDUL}
+	\addtocontents{toc}{\protect\addvspace{-10pt}}
+	\addChapter{Halaman Judul}
 	\include{_internals/judul_dalam}
-	\forceclearchapter
+	\ifodd\thechapterpagecount\forceclearchapter\fi
 }
 
 %
 % load halaman orisinalitas
 
-% Menghilangkan penomoran
-\pagenumbering{gobble}
-
 \strcompare{Laporan Kerja Praktik}{\type}{} {
 \strcompare{Kampus Merdeka}{\type}{} {
+	\addtocontents{toc}{\protect\addvspace{-10pt}}
+    \addChapter{Halaman Orisinalitas}
 	\include{src/00-frontMatter/pernyataanOrisinalitas}
-	\forceclearchapter
+	\ifodd\thechapterpagecount\forceclearchapter\fi
 }}
 
-% Memunculkan penomoran kembali
+% Memunculkan penomoran romawi untuk halaman-halaman awal
 \pagenumbering{roman}
 
-%
-% setelah bagian ini, halaman dihitung sebagai halaman ke 2
-\setcounter{page}{2}
+
+% setelah bagian ini, halaman dihitung sebagai halaman ke 2 atau 3
+\strcompare{Laporan Kerja Praktik}{\type}{\setcounter{page}{2}} {
+	\strcompare{Kampus Merdeka}{\type}{\setcounter{page}{2}} {
+		\setcounter{page}{3}
+	}
+}
 
 %
 % Lembar Penegesahan
 \strcompare{Laporan Kerja Praktik}{\type}
 {
 	% Lembar Pengesahan Kerja Praktik dari LaTeX
-	\addChapter{LEMBAR PERSETUJUAN DOSEN KERJA PRAKTIK}
+	\addChapter{Lembar Persetujuan Dosen Kerja Praktik}
 	\include{src/00-frontMatter/pengesahanKP}
-	\forceclearchapter
+	\ifodd\thechapterpagecount\forceclearchapter\fi
 }{
 \strcompare{Kampus Merdeka}{\type}
 {
-	\addChapter{LEMBAR PENGESAHAN}
+	\addChapter{Lembar Pengesahan}
 	\include{src/00-frontMatter/pengesahanMBKM}
-	\forceclearchapter
+	\ifodd\thechapterpagecount\forceclearchapter\fi
 }
 {
-	\addChapter{LEMBAR PENGESAHAN}
+	\addChapter{Lembar Pengesahan}
 	% Gunakan salah satu (comment atau hapus kode yang tidak perlu):
 	% Lembar Pengesahan Tugas Akhir dari LaTeX
 	\strcompare{Doktor}{\jenjang}
 	{\include{src/00-frontMatter/pengesahanSidangS3}}
 	{\include{src/00-frontMatter/pengesahanSidang}}
-	\forceclearchapter
 	% Lembar Pengesahan dari PDF lain (misal: generated oleh SISIDANG [Fasilkom])
 	%\putpdf{assets/pdfs/pengesahanSidang.pdf}
+	\ifodd\thechapterpagecount\forceclearchapter\fi
 }}
 
 
@@ -103,14 +108,17 @@
 \strcompare{Kampus Merdeka}{\type}{} {
 	%
 	% Kata Pengantar
+	%
 	\addChapter{\kataPengantar}
 	\include{src/00-frontMatter/kataPengantar}
-	\forceclearchapter
+	\ifodd\thechapterpagecount\forceclearchapter\fi
+
 	%
 	% Lembar Persetujuan Publikasi Ilmiah
-	\addChapter{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}
+	%
+	\addChapter{Lembar Persetujuan Karya Ilmiah}
 	\include{src/00-frontMatter/persetujuanPublikasi}
-	\forceclearchapter
+	\ifodd\thechapterpagecount\forceclearchapter\fi
 }}
 
 %
@@ -119,95 +127,58 @@
 \pagestyle{first-pages}
 
 %
-\addChapter{ABSTRAK}
+\addChapter{Abstrak}
 \include{src/00-frontMatter/abstrak}
-%
-%
+
 \include{src/00-frontMatter/abstract}
 
 %
-% Daftar isi, gambar, tabel, dan kode
+% Daftar Isi, Gambar, dan Tabel
 %
-\CAPinToC % All entries in ToC will be CAPITALIZED from here on
-\phantomsection %hack to make them clickable
-\singlespacing
-\tableofcontents
-\setstretch{1.4}
-\clearpage
-\phantomsection %hack to make them clickable
-\singlespacing
-\listoffigures
-\setstretch{1.4}
-\clearpage
-\phantomsection %hack to make them clickable
-\singlespacing
-\listoftables
-\setstretch{1.4}
-\clearpage
+\addDefaultListPage{\tableofcontents}
+\addDefaultListPage{\listoffigures}
+\addDefaultListPage{\listoftables}
 
 %
 % Daftar Kode Program
 % Comment to disable.
 %
-\phantomsection %hack to make them clickable
-\addcontentsline{toc}{chapter}{\lstlistlistingname}
-\singlespacing
-\listoflistings
-\setstretch{1.4}
-\clearpage
+\addCustomListPage{\listoflistings}{\lstlistlistingname}
+
+%
+% Daftar Equation (Persamaan Matematis)
+% Uncomment to use.
+%
+% \addCustomListPage{\listofequ}{\listofequname}
 
 %
 % Daftar Isi yang Didefinisikan Sendiri (Custom)
 % Definisi jenis objek baru dapat dilakukan di uithesis.sty
 % Uncomment to use.
 %
-%\phantomsection %hack to make them clickable
-%\addcontentsline{toc}{chapter}{\listofthingname}
-%\singlespacing
-%\listofthing
-%\setstretch{1.4}
-%\clearpage
-
-%
-% Daftar Equation (Persamaan Matematis)
-% Uncomment to use.
-%
-% \phantomsection %hack to make them clickable
-% \addcontentsline{toc}{chapter}{\listofequname}
-% \singlespacing
-% \listofequ
-% \setstretch{1.4}
-% \clearpage
+% \addCustomListPage{\listofthing}{\listofthingname}
 
 %
 % Daftar Lampiran
 % Comment to disable.
 %
-\phantomsection %hack to make them clickable
-\addcontentsline{toc}{chapter}{\listofappendixname}
-\singlespacing
-\listofappendix
-\setstretch{1.4}
+\addCustomListPage{\listofappendix}{\listofappendixname}
 
-% Table of content normal lagi hurufnya
-\enableboldchapterintoc
 
-\clearpage
+\noCAPinToC % Revert to original \addcontentsline formatting
+\ifodd\thechapterpagecount\clearpage\else\forceclearchapter\fi
+
 
 % Jika penomoran romawi selesai di ganjil
 %\naiveoddclearchapter
 % Jika penomoran romawi selesai di genap
 %\naiveevenclearchapter
 
-\noCAPinToC % Revert to original \addcontentsline formatting
-
 %
-% Gunakan penomeran Arab (1, 2, 3, ...) setelah bagian ini.
+% Gunakan penomoran Arab (1, 2, 3, ...) setelah bagian ini.
 %
 \pagenumbering{arabic}
 \pagestyle{standard}
-% \setlength{\belowcaptionskip}{+2pt}
-
 
 \setoddevenheader
 \include{src/01-body/bab1}
@@ -229,6 +200,7 @@
 \include{_internals/pustaka}
 \clearchapter
 \noCAPinToC % Revert to original \addcontentsline formatting
+
 
 %
 % Lampiran

@@ -581,55 +581,55 @@ Berdasarkan peraturan terkini terkait pengumpulan naskah digital ke UI-ana, \f{h
     \item Buka berkas \code{thesis.tex}, lalu cari semua baris perintah \code{\bslash{}fancypagestyle} dan  \code{\bslash{}pagestyle\{....\}}. Hapus semua baris perintah tersebut.
 \end{enumerate}
 
-%-----------------------------------------------------------------------------%
-\section{Dukungan Multibahasa}
-\label{sec:multilanguageSupport}
-% Hal baru di template 2017 (fitur versi beta)
-%-----------------------------------------------------------------------------%
-\noindent\todo{
-	\bo{Fitur ini sedang dalam uji coba.}
-	Bagi yang memiliki saran atau ingin menyempurnakan fitur ini, silakan kunjungi repositori GitLab template ini (\url{https://gitlab.com/ichlaffterlalu/latex-skripsi-ui-2017}), lalu buat Issue atau Merge Request baru.
-}
+% %-----------------------------------------------------------------------------%
+% \section{Dukungan Multibahasa}
+% \label{sec:multilanguageSupport}
+% % Hal baru di template 2017 (fitur versi beta)
+% %-----------------------------------------------------------------------------%
+% \noindent\todo{
+% 	\bo{Fitur ini sedang dalam uji coba.}
+% 	Bagi yang memiliki saran atau ingin menyempurnakan fitur ini, silakan kunjungi repositori GitLab template ini (\url{https://gitlab.com/ichlaffterlalu/latex-skripsi-ui-2017}), lalu buat Issue atau Merge Request baru.
+% }
 
-Fitur ini ditujukan bagi yang ingin menggunakan bahasa berkarakter non-alfabet, seperti huruf Arab (Arab, Persia, Uyghur), Mandarin (Traditional, Simplified), Jepang, dan Korea.
-Selain itu, fitur ini juga mengatur pemenggalan kata (\f{hyphenation}) untuk beberapa bahasa asing seperti Perancis, Jerman, dan Belanda.
-Untuk mengaktifkan fitur ini, diperlukan modifikasi pada \code{uithesis.sty} pada bagian \bo{Multi-Language Support}.
-Untuk mengaktifkan atau menonaktifkan dukungan bahasa, dapat dengan melakukan \f{commenting} atau \f{uncommenting} bagian yang terkait.
-Jika dukungan terhadap suatu bahasa tidak diperlukan, disarankan untuk menonaktifkan konfigurasi bahasa tersebut untuk mempercepat waktu \f{compile}.
-Sebagai catatan, saat ini dukungan untuk bahasa Arab dan bahasa Jepang/Korea/Mandarin tidak bisa diaktifkan bersamaan.
-Saat ini, untuk menyediakan contoh pada tutorial, dukungan bahasa Jepang diaktifkan secara \f{default}.
+% Fitur ini ditujukan bagi yang ingin menggunakan bahasa berkarakter non-alfabet, seperti huruf Arab (Arab, Persia, Uyghur), Mandarin (Traditional, Simplified), Jepang, dan Korea.
+% Selain itu, fitur ini juga mengatur pemenggalan kata (\f{hyphenation}) untuk beberapa bahasa asing seperti Perancis, Jerman, dan Belanda.
+% Untuk mengaktifkan fitur ini, diperlukan modifikasi pada \code{uithesis.sty} pada bagian \bo{Multi-Language Support}.
+% Untuk mengaktifkan atau menonaktifkan dukungan bahasa, dapat dengan melakukan \f{commenting} atau \f{uncommenting} bagian yang terkait.
+% Jika dukungan terhadap suatu bahasa tidak diperlukan, disarankan untuk menonaktifkan konfigurasi bahasa tersebut untuk mempercepat waktu \f{compile}.
+% Sebagai catatan, saat ini dukungan untuk bahasa Arab dan bahasa Jepang/Korea/Mandarin tidak bisa diaktifkan bersamaan.
+% Saat ini, untuk menyediakan contoh pada tutorial, dukungan bahasa Jepang diaktifkan secara \f{default}.
 
-Berikut adalah contoh penggunaan bahasa Jepang (sumber kutipan: \url{https://en.wikipedia.org/wiki/Kimigayo}):
-\begin{itemize}
-	\item Huruf kanji:\\
-	\begin{japanese}
-		君が代は\\
-		千代に八千代に\\
-		さざれ石の\\
-		いわおとなりて\\
-		こけのむすまで
-	\end{japanese}
-	\item Huruf hiragana:\\
-	\begin{japanese}
-		きみがよは\\
-		ちよにやちよに\\
-		さざれいしの\\
-		いわおとなりて\\
-		こけのむすまで
-	\end{japanese}
-	\item Huruf katakana:\\
-	\begin{japanese}
-		キミガヨハ\\
-		チヨニヤチヨニ\\
-		サザレイシノ\\
-		イワオトナリテ\\
-		コケノムスマデ
-	\end{japanese}
-	\item Contoh \f{in-line text}: \begin{japanese}ありがとうございます\end{japanese} artinya "terima kasih".
-\end{itemize}
+% Berikut adalah contoh penggunaan bahasa Jepang (sumber kutipan: \url{https://en.wikipedia.org/wiki/Kimigayo}):
+% \begin{itemize}
+% 	\item Huruf kanji:\\
+% 	\begin{japanese}
+% 		君が代は\\
+% 		千代に八千代に\\
+% 		さざれ石の\\
+% 		いわおとなりて\\
+% 		こけのむすまで
+% 	\end{japanese}
+% 	\item Huruf hiragana:\\
+% 	\begin{japanese}
+% 		きみがよは\\
+% 		ちよにやちよに\\
+% 		さざれいしの\\
+% 		いわおとなりて\\
+% 		こけのむすまで
+% 	\end{japanese}
+% 	\item Huruf katakana:\\
+% 	\begin{japanese}
+% 		キミガヨハ\\
+% 		チヨニヤチヨニ\\
+% 		サザレイシノ\\
+% 		イワオトナリテ\\
+% 		コケノムスマデ
+% 	\end{japanese}
+% 	\item Contoh \f{in-line text}: \begin{japanese}ありがとうございます\end{japanese} artinya "terima kasih".
+% \end{itemize}
 
-Untuk penggunaan Simplified Chinese dapat menggunakan \f{environment} \code{simpchinese}.
-Untuk penggunaan Traditional Chinese dapat menggunakan \f{environment} \code{tradchinese}.
-Untuk penggunaan bahasa Korea dapat menggunakan \f{environment} \code{korean}.
-Untuk penggunaan huruf Arab, baik itu untuk bahasa Arab, Persia, maupun Uyghur, dapat mengunjungi tutorial ArabTeX di \url{https://en.wikipedia.org/wiki/ArabTeX}.
-Sebelum menyalakan dukungan terhadap suatu bahasa, pastikan tersedia \f{font} untuk bahasa terkait di dalam sistem operasi Anda.
+% Untuk penggunaan Simplified Chinese dapat menggunakan \f{environment} \code{simpchinese}.
+% Untuk penggunaan Traditional Chinese dapat menggunakan \f{environment} \code{tradchinese}.
+% Untuk penggunaan bahasa Korea dapat menggunakan \f{environment} \code{korean}.
+% Untuk penggunaan huruf Arab, baik itu untuk bahasa Arab, Persia, maupun Uyghur, dapat mengunjungi tutorial ArabTeX di \url{https://en.wikipedia.org/wiki/ArabTeX}.
+% Sebelum menyalakan dukungan terhadap suatu bahasa, pastikan tersedia \f{font} untuk bahasa terkait di dalam sistem operasi Anda.
