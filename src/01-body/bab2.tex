@@ -170,10 +170,15 @@ Adapun untuk membuat tabel panjang yang bisa melebihi dari satu halaman, gunakan
 & kol 1 & kol 2 \\
 \hline
 \endfirsthead % batas akhir header yang akan muncul di halaman pertama
+\caption[]{Contoh Tabel Panjang (sambungan)} \\
 \hline
 & kol 1 & kol 2 \\
 \hline
 \endhead % batas akhir header yang akan muncul di halaman berikutnya
+\hline
+\endfoot % batas akhir footer yang akan muncul di halaman berikutnya
+\hline
+\endlastfoot % batas akhir footer yang akan muncul di halaman terakhir
 baris 1  & 1 & 2 \\
 baris 2  & 3 & 4 \\
 baris 3  & 5 & 6 \\
@@ -189,7 +194,7 @@ baris 12 & 23 & 24 \\
 baris 13 & 25 & 26 \\
 baris 14 & 27 & 28 \\
 baris 15 & 29 & 30 \\
-\hline
+baris 16 & 31 & 32 \\
 \end{longtable}
 
 Ada jenis tabel lain yang dapat dibuat dengan \latex~berikut beberapa diantaranya.
