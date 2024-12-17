@@ -2,7 +2,7 @@
 % Konfigurasi LaTeX untuk laporan thesis/ta/skripsi/sp sesuai dengan aturan UI tahun 2017
 %
 % @author  Andreas Febrian
-% @version 2.2.0
+% @version 2.2.1
 % @edit by Ichlasul Affan
 
 % Terima kasih untuk:
@@ -89,6 +89,7 @@
 % rumus.
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{newtxtext,newtxmath} % complete Times New Roman font
 \usepackage{bm}
 
 % Membantu penulisan diakhir halaman
@@ -98,10 +99,15 @@
 \usepackage{longtable}
 
 % Untuk support landscape beberapa halaman yang diperlukan.
-\usepackage{lscape}
+\usepackage{pdflscape}
 
 % Untuk memberikan gambar dengan letak yang absolute (bisa diatur sesuka hati)
 \usepackage{tikzpagenodes}
+
+% Tikz untuk membuat diagram sederhana
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{chains}
 
 % Membuat seluruh tulisan menjadi Times New Roman.
 \usepackage{pslatex}
@@ -147,10 +153,13 @@
 %% ACM
 % \bibliographystyle{acm}
 %% MLA (unduh berkas mla.bst dari https://www.ctan.org/tex-archive/biblio/bibtex/contrib/mla/mla.bst
-%%      ke direktori _internals)
+%%	  ke direktori _internals)
 % \usepackage{natbib}
 % \bibliographystyle{_internals/mla}
 
+% Glossary/daftar istilah support
+\usepackage{glossaries}
+\usepackage[automake]{glossaries-extra}
 
 
 %-----------------------------------------------------------------------------%
@@ -184,24 +193,20 @@
 	pdfview=FitH
 }
 
-% Uncomment untuk menghilangkan spasi di antara tiap-tiap Bab pada daftar pustaka
-% \newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
-% \addtocontents{lot}{\protect\noaddvspace}
-
 % Link setiap item daftar isi (ToC) ke halaman terkait
 \makeatletter
 \def\contentsline#1#2#3#4{%
   \ifx\\#4\\%
-    \csname l@#1\endcsname{#2}{#3}%
+	\csname l@#1\endcsname{#2}{#3}%
   \else
-    \csname l@#1\endcsname{%
-      \hyper@linkstart{link}{#4}{#2}\hyper@linkend
-    }{%
-      % same link destination for the page:
-      \hyper@linkstart{link}{#4}{#3}\hyper@linkend
-      % link destination is the page itself:
-      % \hyperpage{#3}%
-    }%
+	\csname l@#1\endcsname{%
+	  \hyper@linkstart{link}{#4}{#2}\hyper@linkend
+	}{%
+	  % same link destination for the page:
+	  \hyper@linkstart{link}{#4}{#3}\hyper@linkend
+	  % link destination is the page itself:
+	  % \hyperpage{#3}%
+	}%
   \fi
 }
 
@@ -254,10 +259,10 @@
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
-	\fancyfoot[C]{\thepage}
 	\renewcommand{\headrulewidth}{0.0pt}
-	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
-	\fancyfoot[LO,RE]{}
+	% \fancyfoot[L]{}
+	\fancyfoot[C]{\thepage}
+	% \fancyfoot[R]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
 	\renewcommand{\footrulewidth}{0.0pt}
 }
 
@@ -274,8 +279,8 @@
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
-	\fancyfoot[C]{}
 	\renewcommand{\headrulewidth}{0.0pt}
+	\fancyfoot[C]{}
 	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
 	\fancyfoot[LO,RE]{}
 	\renewcommand{\footrulewidth}{0.0pt}
@@ -285,8 +290,8 @@
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
-	\fancyfoot[C]{\thepage}
 	\renewcommand{\headrulewidth}{0.0pt}
+	\fancyfoot[C]{\thepage}
 	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
 	\fancyfoot[LO,RE]{}
 	\renewcommand{\footrulewidth}{0.0pt}
@@ -296,9 +301,10 @@
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
+	\renewcommand{\headrulewidth}{0.0pt}
 	\fancyfoot[C]{\thepage}
-    \renewcommand{\headrulewidth}{0.0pt}
 	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[LO,RE]{}
 	\renewcommand{\footrulewidth}{0.0pt}
 }
 
@@ -306,10 +312,10 @@
 	\fancyhead[L]{}
 	\fancyhead[C]{}
 	\fancyhead[R]{}
-	\fancyfoot[C]{\thepage}
 	\renewcommand{\headrulewidth}{0.0pt}
-	\fancyfoot[LO,RE]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
-	\fancyfoot[LE,RO]{}
+	\fancyfoot[C]{\thepage}
+	\fancyfoot[LE,RO]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\fancyfoot[LO,RE]{}
 	\renewcommand{\footrulewidth}{0.0pt}
 }
 
@@ -354,9 +360,11 @@
 	keywordstyle=\color{magenta},
 	numberstyle=\tiny\color{codegray},
 	stringstyle=\color{codepurple},
+	identifierstyle=\color{black},
 	basicstyle=\ttfamily\scriptsize,
 	breakatwhitespace=true,
 	breaklines=true,
+	breakindent=1em,
 	captionpos=b,
 	keepspaces=true,
 	numbers=left,
@@ -380,6 +388,7 @@
 	\renewcommand{\listfigurename}{Daftar Gambar}
 	\renewcommand{\listtablename}{Daftar Tabel}
 	\renewcommand{\lstlistlistingname}{Daftar Kode Program}
+	\renewcommand{\glossaryname}{Daftar Istilah}
 }
 
 \renewcommand{\chaptername}{BAB}
@@ -432,7 +441,7 @@
 
 % Buat catatan kecil. Catatan akan ditampilkan dalam tabel.
 \newcommand{\todo}[1]{
-    \begin{tabular}{| p{1\textwidth} |}
+	\begin{tabular}{| p{\textwidth - 16 pt} |}
 		\rowcolor[rgb]{.9,.6,.6}
 		\bo{@todo} \\
 		\rowcolor[gray]{1.}
@@ -440,7 +449,7 @@
 		 \\
 		\hline
 	\end{tabular}
-    }
+	}
 
 % Buat catatan untuk menambahkan referensi.
 \newcommand{\todoCite}{
@@ -452,7 +461,7 @@
 		 \\
 		\hline
 	\end{tabular}
-    }
+	}
 
 % Tambahkan berkas PDF ke dalam laporan dan gunakan style laporan
 % terhadap berkas ini.
@@ -472,12 +481,12 @@
 % Tambahkan kata-kata yang dimasukan kedalam Table of Contents.
 \newcommand{\addChapter}[1]{ % Dengan mereset chapter page counter
 	\setcounter{chapterpagecount}{0}
-	\addtocontents{toc}{\protect\addvspace{-10pt}}
+	\addtocontents{toc}{\protect\addvspace{-1em}}
 	\phantomsection
 	\addcontentsline{toc}{chapter}{\uppercase{#1}}
 }
 \newcommand{\addChapterNoCount}[1]{ % Tanpa mereset chapter page counter
-	\addtocontents{toc}{\protect\addvspace{-10pt}}
+	\addtocontents{toc}{\protect\addvspace{-1em}}
 	\phantomsection
 	\addcontentsline{toc}{chapter}{\uppercase{#1}}
 }
@@ -499,6 +508,7 @@
 
 % Alias untuk menambahkan halaman baru setiap akhir bab
 \newcommand{\clearchapter}{
+	\setfirstheaderfooter
 	\clearpage
 	\ifodd\thechapterpagecount
 		\null
@@ -507,6 +517,7 @@
 		\newpage
 	\fi
 	\setoddevenheader
+	\setoddevenfooter
 }
 \newcommand{\forceclearchapter}{
 	\clearpage
@@ -517,12 +528,26 @@
 }
 
 % Alias untuk mengatur ulang konfigurasi footer setiap awal bab
+\newcommand{\setfirstheaderfooter}{
+	\fancyhead{}
+	\fancyfoot{}
+	\fancyfoot[C]{\thepage}
+	\fancyfoot[R]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+}
 \newcommand{\setoddevenheader}{
 	\fancyhead{}
 	\ifodd\thepage
 		\fancyhead[RO,LE]{\thepage}
 	\else
 		\fancyhead[LO,RE]{\thepage}
+	\fi
+}
+\newcommand{\setoddevenfooter}{
+	\fancyfoot{}
+	\ifodd\thepage
+		\fancyfoot[RO,LE]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
+	\else
+		\fancyfoot[LO,RE]{\footnotesize \fontfamily{phv} \selectfont \bo{Universitas Indonesia}}
 	\fi
 }
 
@@ -561,12 +586,9 @@
 %
 \newcommand{\listofequname}{Daftar \equ}
 \newlistof{equ}{loe}{\listofequname}
-\newcommand{\captionequ}[1]
-{%
-	\refstepcounter{equ}
-	\caption*{\textbf{\equ~\thechapter.\theequ:} #1}
+\newcommand{\addequtotoc}[2]{
 	\addcontentsline{loe}{equ}
-	{\protect\numberline{\thechapter.\theequ}{\ignorespaces #1}}\par
+	{\protect\numberline{\ref{#1}}{\ignorespaces #2}}\par
 }
 \renewcommand\cftequindent{0pt}
 \renewcommand\cftequnumwidth{75pt}
@@ -591,6 +613,8 @@
 % \.... = Nama jenis objek tersebut
 % \caption.... = Caption untuk jenis objek tersebut
 % \captionsource.... = Caption dengan sumber untuk jenis objek tersebut
+% \caption....cont = Caption sambungan untuk jenis objek tersebut
+% \captionsource....cont = Caption sambungan dengan sumber untuk jenis objek tersebut
 %
 
 %
@@ -605,23 +629,34 @@
 % - "loth" -> "lotr"
 %
 
+%% nama jenis objek
 %\newcommand{\thing}{Sesuatu}
 %\newcommand{\listofthingname}{Daftar \thing}
+%% mendefinisikan daftar isi suatu jenis objek
 %\newlistof{thing}{loth}{\listofthingname}
+%% mengatur penomoran suatu jenis objek
+%\counterwithin{thing}{chapter}
 %\newcommand{\captionthing}[1]
 %{
 %	\refstepcounter{thing}
-%	\caption*{\textbf{\thing~\thechapter.\thething:} #1}
+%	\caption*{\textbf{\thing~\thething:}~#1}
 %	\addcontentsline{loth}{thing}
-%	{\protect\numberline{\thechapter.\thething}{\ignorespaces #1}}\par
+%	{\protect\numberline{\thething}{\ignorespaces #1}}\par
+%}
+%\newcommand*{\captionthingcont}[2]{
+%	\caption*{\textbf{\thing~\thething:}~#1 (sambungan)}
 %}
 %\newcommand{\captionsourcething}[2]
 %{
 %	\refstepcounter{thing}
-%	\caption*{\textbf{\thing~\thechapter.\thething:} #1\par
+%	\caption*{\textbf{\thing~\thething:}~#1\par
 %		\footnotesize\textbf{Sumber:} #2\par}
 %	\addcontentsline{loth}{thing}
-%	{\protect\numberline{\thechapter.\thething}{\ignorespaces #1}}\par
+%	{\protect\numberline{\thething}{\ignorespaces #1}}\par
+%}
+%\newcommand*{\captionsourcethingcont}[2]{
+%	\caption*{\textbf{\thing~\thething:}~#1 (sambungan)\par
+%		\footnotesize\textbf{Sumber:} #2\par}
 %}
 %\renewcommand\cftthingindent{0pt}
 %\renewcommand\cftthingnumwidth{50pt} % sesuaikan lebar ini agar penomoran tidak menimpa judul konten
@@ -640,13 +675,12 @@
 	{\apdx~\protect\numberline{\theappendix.}{\ignorespaces #1}}\par
 }
 
-
 %
 % Shortcut command untuk membuat halaman daftar
 %
 \newcommand{\addDefaultListPage}[1]
 {
-	\addtocontents{toc}{\protect\addvspace{-10pt}}
+	\addtocontents{toc}{\protect\addvspace{-1em}}
 	\CAPinToC % All entries in ToC will be CAPITALIZED from here on
 	\phantomsection %hack to make them clickable
 	\singlespacing
@@ -662,21 +696,20 @@
 }
 
 %
-% Pengaturan prefiks entri daftar konten default (daftar isi, tabel, gambar)
+% Pengaturan format entri daftar konten default (daftar isi, tabel, gambar)
 %
 \AtBeginDocument{
 	% Pengaturan Daftar Isi
 	\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
 	\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
-	\renewcommand{\cftchappresnum}{\chaptername~}
-	\renewcommand{\cftchapnumwidth}{45pt}
-	
+	\renewcommand{\cftchapaftersnum}{.}
+
 	% Pengaturan Daftar Gambar
 	\renewcommand{\cftfigindent}{0pt}
 	\renewcommand{\cftfignumwidth}{70pt}
 	\renewcommand{\cftfigaftersnum}{.}
 	\renewcommand{\cftfigpresnum}{\pic~}
-	
+
 	% Pengaturan Daftar Tabel
 	\renewcommand{\cfttabindent}{0pt}
 	\renewcommand{\cfttabnumwidth}{60pt}
@@ -684,6 +717,14 @@
 	\renewcommand{\cfttabpresnum}{\tab~}
 }
 
+
+%-----------------------------------------------------------------------------%
+% Custom Programming Language Support
+% Ditujukan untuk teman-teman di Fasilkom UI,
+% untuk mendefinisikan bahasa pemrograman khusus yang tidak disediakan secara default oleh library listings.
+% Definisi bahasa pemrograman baru bisa dilakukan di _internals/proglangdef.sty
+%-----------------------------------------------------------------------------%
+\usepackage{_internals/proglangdef}
 
 
 %-----------------------------------------------------------------------------%

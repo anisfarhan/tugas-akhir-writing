@@ -5,7 +5,7 @@
 Bab ini menjelaskan tentang struktur dari \f{template} tugas akhir ini.
 Dengan memahami struktur \f{template}, pekerjaan Anda akan menjadi lebih terarah karena Anda tahu di mana Anda harus melakukan sesuatu.
 
-\noindent\todo{
+\todo{
 	Sejatinya bab ini digunakan untuk membahas inti dari penelitian Anda.
 	Sesuaikan saja dengan kebutuhkan Anda: misalkan bab empat Anda adalah penjelasan terkait implementasi sistem.
 }
@@ -15,7 +15,7 @@ Dengan memahami struktur \f{template}, pekerjaan Anda akan menjadi lebih terarah
 \section{\code{thesis.tex}}
 \label{sec:thesis-tex}
 %-----------------------------------------------------------------------------%
-Berkas \code{thesis.tex} berisi seluruh berkas Latex yang dibaca, jadi bisa dikatakan sebagai berkas utama.
+Berkas \code{thesis.tex} berisi seluruh berkas \gls{latex} yang dibaca, jadi bisa dikatakan sebagai berkas utama.
 Dari berkas ini kita dapat mengatur bab apa saja yang ingin kita tampilkan dalam dokumen.
 
 
@@ -39,7 +39,9 @@ Anda diminta untuk menuliskan judul laporan, nama, NPM, dan hal-hal lain yang di
 Berkas \code{istilah.tex} digunakan untuk mencatat istilah-istilah yang digunakan.
 Fungsinya hanya untuk memudahkan penulisan.
 Pada beberapa kasus, ada kata-kata yang harus selalu muncul dengan tercetak miring atau tercetak tebal.
-Dengan menjadikan kata-kata tersebut sebagai sebuah perintah \latex~tentu akan mempercepat dan mempermudah pengerjaan laporan.
+Anda juga bisa menggunakan berkas ini untuk mencatat istilah atau akronim khusus yang perlu dimunculkan di Daftar Istilah.
+Penggunaan lebih lanjut terkait berkas \code{\_internals/istilah.tex} untuk menyimpan istilah atau akronim ada di \sect~\ref{sec:glossary}.
+Dengan menjadikan kata-kata tersebut sebagai sebuah perintah \gls{latex}~tentu akan mempercepat dan mempermudah pengerjaan laporan.
 
 %-----------------------------------------------------------------------------%
 \subsection{\code{references.bib}}
@@ -49,8 +51,10 @@ Berkas \code{references.bib} berisi seluruh daftar referensi yang digunakan dala
 laporan.
 Anda bisa membuat model daftar referensi lain dengan menggunakan BibTeX.
 Untuk menambahkan referensi dengan format BibTeX, Anda bisa mengisi berkas \code{references.bib}.
+Untuk merujuk pada salah satu referensi yang ada, gunakan perintah \code{\bslash{}cite},
+e.g. \code{\bslash{}cite\{book:sample\}} yang akan akan memunculkan \cite{book:sample}.
+Informasi lebih lanjut mengenai referensi bisa dilihat di \sect~\ref{sec:references-bib}.
 Untuk mempelajari bibtex lebih lanjut, silahkan buka \url{http://www.bibtex.org/Format}.
-Untuk merujuk pada salah satu referensi yang ada, gunakan perintah \bslash cite, e.g. \bslash cite\{book:sample\} yang akan akan memunculkan \cite{book:sample}.
 
 
 %-----------------------------------------------------------------------------%
@@ -65,7 +69,7 @@ Direktori \code{\_internals} berisi halaman-halaman dan \f{styling} yang tidak p
 \label{sec:hype-indonesia-tex}
 %-----------------------------------------------------------------------------%
 Berkas \code{hype.indonesia.tex} berisi cara pemenggalan beberapa kata dalam bahasa Indonesia.
-\latex~memiliki algoritma untuk memenggal kata-kata sendiri, namun untuk beberapa kasus algoritma ini memenggal dengan cara yang salah.
+\gls{latex}~memiliki algoritma untuk memenggal kata-kata sendiri, namun untuk beberapa kasus algoritma ini memenggal dengan cara yang salah.
 Untuk memperbaiki pemenggalan yang salah inilah cara pemenggalan yang benar ditulis dalam berkas \f{hype.indonesia.tex}.
 
 %-----------------------------------------------------------------------------%
@@ -75,6 +79,8 @@ Untuk memperbaiki pemenggalan yang salah inilah cara pemenggalan yang benar ditu
 Berkas \code{uithesis.sty} berisi konfigurasi inti dari \f{layoutting} untuk \f{template} ini.
 Secara umum, Anda tidak perlu mengubah apapun pada berkas ini.
 Akan tetapi, untuk kasus-kasus lanjutan, seperti menambahkan daftar konten \f{custom} atau menyalakan dukungan terhadap \f{multi-language}, Anda bisa mengubahnya secara langsung pada \code{uithesis.sty}.
+Salah satu contohnya adalah ketika Anda ingin mendefinisikan daftar suatu jenis objek baru, seperti yang dicontohkan pada \sect~\ref{sec:addCustomContentList}.
+Atau bisia juga ketika Anda ingin mengganti tipe referensi, seperti yang dicontohkan pada \sect~\ref{sec:bibtexChangeFormat}.
 Jika Anda memiliki feedback maupun ingin berkontribusi terhadap perbaikan \f{layout}, selama ke arah yang sesuai dengan ketentuan Peraturan Rektor UI terkait format Tugas Akhir, Anda bisa mengubah berkas ini dan berkas lainnya yang terkait lalu membuat Merge Request di repositori.
 Keterangan lebih lanjut terkait cara kontribusi dapat dilihat di berkas \code{README.md} dan \code{CONTRIBUTING}.
 
@@ -113,5 +119,5 @@ Direktori ini berisi isi laporan yang Anda tulis.
 Setiap nama berkas e.g. bab1.tex merepresentasikan bab dimana tulisan tersebut akan muncul.
 Sebagai contoh, kode dimana tulisan ini dibaut berada dalam berkas dengan nama \code{bab4.tex}.
 Ada enam buah berkas yang telah disiapkan untuk mengakomodir enam bab dari laporan Anda, diluar bab kesimpulan dan saran.
-Jika Anda tidak membutuhkan sebanyak itu, silahkan hapus kode dalam berkas \code{thesis.tex} yang memasukan berkas \latex~yang tidak dibutuhkan;
+Jika Anda tidak membutuhkan sebanyak itu, silahkan hapus kode dalam berkas \code{thesis.tex} yang memasukan berkas \gls{latex}~yang tidak dibutuhkan;
 contohnya perintah \code{\bslash{}include\{bab6.tex\}} merupakan kode untuk memasukan berkas \code{bab6.tex} kedalam laporan.
