@@ -50,13 +50,13 @@ Daftar perubahan pada \f{template} hingga versi ini:
 			\item Versi ini merupakan hasil \f{feedback} dari peserta skripsi dan tesis di lab \f{Reliable Software Engineering} (RSE) Fasilkom UI, semester genap 2020/2021.
 			\item Minor edit: "Lembar Pengesahan", dsb. di daftar isi menjadi all caps.
 			\item Experimental multi-language support (Chinese, Japanese, Korean).
-			\item Support untuk justifikasi dan word-wrapping pada tabel.
+			\item \f{Support} untuk justifikasi dan word-wrapping pada tabel.
 			\item Penggunaan suffix "(sambungan)" untuk tabel lintas halaman. Tambahan support suffix untuk \code{\bslash{}captionsource}.
 		\end{itemize}
 	\item versi 2.1.1 (7 Februari 2022):
 		\begin{itemize}
 			\item Update struktur mengikuti fork template versi 1.0.3 di \url{https://github.com/rkkautsar/edom/ui-thesis-template}.
-			\item Support untuk simbol matematis \code{amsfonts}.
+			\item \f{Support} untuk simbol matematis \code{amsfonts}.
 			\item Kontribusi komunitas terkait improvement GitLab CI, atribusi, dan format sitasi APA bahasa Indonesia.
 			\item Perbaikan tutorial berdasarkan perubahan terbaru pada versi 2.1.0 dan 2.1.1.
 		\end{itemize}
@@ -64,7 +64,7 @@ Daftar perubahan pada \f{template} hingga versi ini:
 		\begin{itemize}
 			\item Modifikasi penamaan beberapa berkas.
 			\item Perbaikan beberapa halaman depan (halaman persetujuan, halaman orisinalitas, dsb.).
-			\item Support untuk lembar pengesahan yang berbeda dengan format standar, seperti Laporan Kerja Praktik dan Disertasi.
+			\item \f{Support} untuk lembar pengesahan yang berbeda dengan format standar, seperti Laporan Kerja Praktik dan Disertasi.
 			\item Kontribusi komunitas terkait kesesuaian dengan format Tugas Akhir UI, kelengkapan dokumen, perbaikan format sitasi, dan \f{quality-of-life}.
 			\item Perbaikan tutorial.
 		\end{itemize}
@@ -72,13 +72,27 @@ Daftar perubahan pada \f{template} hingga versi ini:
 		\begin{itemize}
 			\item Dukungan untuk format Tugas Akhir Kelompok di Fasilkom UI.
 			\item Dukungan untuk format laporan Kampus Merdeka Mandiri di Fasilkom UI.
-			\item Minor bugfix: Perbaikan kapitalisasi variabel.
+			\item Minor \f{bugfix}: Perbaikan kapitalisasi variabel.
 			\item Quality-of-Life: Pengaturan kembali \code{config/settings.tex}.
 			\item Tutorial untuk beberapa \f{use case}.
 		\end{itemize}
 	\item versi 2.2.0 (28 Agustus 2024):
 		\begin{itemize}
 			\item Perbaikan format agar sesuai dengan format Tugas Akhir terbaru. Hal ini mencakup halaman judul, halaman pernyataan orisinalitas, header/footer, dan lampiran.
+		\end{itemize}
+	\item versi 2.2.1 (16 Desember 2024):
+		\begin{itemize}
+			\item \f{Bugfix}: isu \f{header} dan \f{footer} untuk halaman bolak-balik.
+			\item \f{Bugfix}: isu \f{auto-wrapping} pada kode yang tidak bisa berjalan sejak v2.2.0.
+			\item \f{Bugfix}: isu penomoran objek kustom yang tidak sesuai konvensi \code{[bab]}.\code{[objek]}.
+			\item \f{Bugfix}: penomoran bab di Daftar Isi yang belum sesuai konvensi Tugas Akhir UI.
+			\item \f{Bugfix}: hal-hal lain pada \f{formatting} sesuai dengan permintaan dari Perpustakaan Fasilkom UI.
+			\item Perbaikan \f{formatting} untuk \code{landscape} dengan \f{library} \code{pdflscape}.
+			\item Perbaikan cara memasukkan sebuah persamaan ke dalam daftar persamaan.
+			\item Perbaikan penggunaan "saya" menjadi "kami" untuk dokumen-dokumen awal pada Tugas Akhir Kelompok.
+			\item Fitur baru: \f{Support} untuk \f{code highlighting} pada berbagai bahasa pemrograman yang tidak di-\f{support} secara \f{default} oleh \f{library} \code{listings}.
+			\item Fitur baru: \f{Support} untuk \f{glossary} (daftar istilah).
+			\item Perbaikan \f{major} pada tutorial, termasuk menampilkan contoh kode ke dalam PDF tutorial, dan pengaturan ulang subbab.
 		\end{itemize}
 \end{itemize}
 \clearpage

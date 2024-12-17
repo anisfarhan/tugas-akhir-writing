@@ -1,6 +1,13 @@
 **/*.aux
+**/*.acn
+**/*.acr
+**/*.alg
+**/*.glg
+**/*.gls
 **/*.bbl
 **/*.blg
+**/*.glo
+**/*.ist
 **/*.loe
 **/*.lof
 **/*.log
