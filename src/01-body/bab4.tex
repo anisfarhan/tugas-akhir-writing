@@ -59,11 +59,15 @@ Matrix Multiplication adalah proses mengalikan dua matriks untuk menghasilkan ma
 \subsection{Contoh Input-Output}
 \textbf{Input:}
 \begin{verbatim}
+    matrix A size:
     2 3
+    matrix A:
     1 2 3
     4 5 6
 
+    matrix B size:
     3 2
+    matrix B:
     1 1
     1 2
     2 3
@@ -71,6 +75,7 @@ Matrix Multiplication adalah proses mengalikan dua matriks untuk menghasilkan ma
 
 \textbf{Output:}
 \begin{verbatim}
+    result matrix:
     9 14
     21 32
 \end{verbatim}
@@ -109,7 +114,7 @@ Trapezoidal Rule adalah metode numerik untuk menghitung integral dari fungsi. Me
 \label{sec:dfs-implementation}
 
 \subsection{Deskripsi Algoritma}
-Depth-First Search (DFS) adalah algoritma pencarian yang digunakan untuk menjelajahi graf atau pohon. DFS bekerja dengan cara menjelajahi sejauh mungkin di sepanjang cabang sebelum melakukan backtrack. Algoritma ini menggunakan struktur data stack (atau rekursi) untuk melacak jalur yang sedang dieksplorasi. Kompleksitas waktu DFS adalah $\mathcal{O}(V + E)$, di mana $V$ adalah jumlah vertex dan $E$ adalah jumlah edge. Kompleksitas ruangnya adalah $\mathcal{O}(V)$ untuk menyimpan status kunjungan.
+Depth-First Search (DFS) adalah algoritma pencarian yang digunakan untuk menjelajahi graf atau pohon. DFS bekerja dengan cara menjelajahi sejauh mungkin di sepanjang cabang sebelum melakukan backtrack. Algoritma ini menggunakan struktur data stack (atau rekursi) untuk melacak jalur yang sedang dieksplorasi. Kompleksitas waktu DFS adalah $\mathcal{O}\left(V + E\right)$, di mana $V$ adalah jumlah vertex dan $E$ adalah jumlah edge. Kompleksitas ruangnya adalah $\mathcal{O}\left(V\right)$ untuk menyimpan status kunjungan.
 
 \subsection{Pseudocode}
 \begin{verbatim}
@@ -130,18 +135,56 @@ Depth-First Search (DFS) adalah algoritma pencarian yang digunakan untuk menjela
 Pada contoh ini algoritma DFS digunakan untuk menghitung luas pulau dari koordinat (x, y) yang diberikan. Dimana 1 menandakan daratan dan 0 menandakan lautan.
 \textbf{Input:}
 \begin{verbatim}
+    grid size:
     5 5
+    grid:
     1 1 0 0 0
     1 1 0 1 0
     0 0 0 1 1
     0 0 1 1 1
     1 1 0 0 0
-    0 1
+    start point:
+    1 1
 \end{verbatim}
 
 \textbf{Output:}
 \begin{verbatim}
-    4
+    area of island: 4
+\end{verbatim}
+
+\section{Dynamic Programming - Coin Change}
+\label{sec:coin-change-implementation}
+
+\subsection{Deskripsi Algoritma}
+Contoh masalah algoritma dynamic programming diberikan dalam bentuk Coin Change Problem. Masalah ini bertujuan untuk menemukan jumlah minimum koin yang dibutuhkan untuk mencapai nilai tertentu dengan denominasi koin yang diberikan. Kompleksitas waktu adalah $\mathcal{O}\left(N \cdot M\right)$, di mana $N$ adalah jumlah nilai yang ingin dicapai dan $M$ adalah jumlah jenis koin. Kompleksitas ruangnya adalah $\mathcal{O}\left(N\right)$.
+
+
+\subsection{Pseudocode}
+\begin{verbatim}
+function coinChange(coins, amount):
+    dp = array of size (amount + 1) initialized to infinity
+    dp[0] = 0
+
+    for i from 1 to amount:
+        for each coin in coins:
+            if i - coin >= 0:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+
+    return dp[amount] if dp[amount] != infinity else -1
+\end{verbatim}
+
+\subsection{Contoh Input-Output}
+\textbf{Input:}
+\begin{verbatim}
+    coins:
+    1 3 4
+    amount:
+    6
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+    minimum number of coins: 2
 \end{verbatim}
 
 % \section{[Nama Algoritma]}
@@ -167,9 +210,9 @@ Pada contoh ini algoritma DFS digunakan untuk menghitung luas pulau dari koordin
 
 % sorting (bubble sort)
 % perkalian matrix (naive matrix multiplication)
-	% \item integral numerik
-	% \item graph traversal (DFS, BFS)
-	% \item knapsack problem
-	% \item string matching
-	% \item path-finding algorithm
-	% \item huffman coding
+% integral numerik
+% graph traversal (DFS, BFS)
+% knapsack problem
+% string matching
+% path-finding algorithm
+% huffman coding
