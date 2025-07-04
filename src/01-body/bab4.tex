@@ -11,7 +11,7 @@ Bab ini menjelaskan tentang implementasi dari kode-kode yang dipilih pada tugas 
 
 
 %-----------------------------------------------------------------------------%
-\section{Bubble Sort}
+\section{Sorting - Bubble Sort}
 \label{sec:bubble-sort-implementation}
 %-----------------------------------------------------------------------------%
 \subsection{Deskripsi Algoritma}
@@ -38,7 +38,7 @@ Bubble Sort merupakan algoritma pengurutan sederhana yang efektif untuk dataset 
     1 2 3 4 5 6
 \end{verbatim}
 
-\section{Matrix Multiplication}
+\section{Matrix Multiplication - Naive}
 \label{sec:matrix-multiplication-implementation}
 
 \subsection{Deskripsi Algoritma}
@@ -80,7 +80,7 @@ Matrix Multiplication adalah proses mengalikan dua matriks untuk menghasilkan ma
     21 32
 \end{verbatim}
 
-\section{Trapezoidal Rule Integration}
+\section{Integral Modeling - Trapezoidal Rule Integration}
 \label{sec:trapezoidal-rule-integration-implementation}
 
 \subsection{Deskripsi Algoritma}
@@ -110,7 +110,7 @@ Trapezoidal Rule adalah metode numerik untuk menghitung integral dari fungsi. Me
     0.333333
 \end{verbatim}
 
-\section{Depth-First Search (DFS)}
+\section{Graph Traversal - Depth-First Search (DFS)}
 \label{sec:dfs-implementation}
 
 \subsection{Deskripsi Algoritma}
@@ -161,16 +161,16 @@ Contoh masalah algoritma dynamic programming diberikan dalam bentuk Coin Change 
 
 \subsection{Pseudocode}
 \begin{verbatim}
-function coinChange(coins, amount):
-    dp = array of size (amount + 1) initialized to infinity
-    dp[0] = 0
+    function coinChange(coins, amount):
+        dp = array of size (amount + 1) initialized to infinity
+        dp[0] = 0
 
-    for i from 1 to amount:
-        for each coin in coins:
-            if i - coin >= 0:
-                dp[i] = min(dp[i], dp[i - coin] + 1)
+        for i from 1 to amount:
+            for each coin in coins:
+                if i - coin >= 0:
+                    dp[i] = min(dp[i], dp[i - coin] + 1)
 
-    return dp[amount] if dp[amount] != infinity else -1
+        return dp[amount] if dp[amount] != infinity else -1
 \end{verbatim}
 
 \subsection{Contoh Input-Output}
@@ -185,6 +185,135 @@ function coinChange(coins, amount):
 \textbf{Output:}
 \begin{verbatim}
     minimum number of coins: 2
+\end{verbatim}
+
+\section{String Matching - Naive}
+\label{sec:string-matching-implementation}
+
+\subsection{Deskripsi Algoritma}
+Naive String Matching adalah algoritma yang digunakan untuk mencari substring dalam string utama dengan cara membandingkan setiap karakter dari substring dengan karakter yang sesuai dalam string utama. Algoritma ini bekerja dengan iterasi melalui string utama dan memeriksa kecocokan karakter satu per satu. Kompleksitas waktu dalam kasus terburuk adalah $\mathcal{O}\left(N \cdot M\right)$, di mana $N$ adalah panjang string utama dan $M$ adalah panjang substring. Kompleksitas ruangnya adalah $\mathcal{O}(1)$.
+
+\subsection{Pseudocode}
+\begin{verbatim}
+    function stringMatch(text, pattern):
+        n = length of text
+        m = length of pattern
+        for i from 0 to n - m:
+            j = 0
+            while j < m and text[i + j] == pattern[j]:
+                j += 1
+            if j == m:
+                return i  // found match at index i
+        return -1  // no match found
+\end{verbatim}
+
+\subsection{Contoh Input-Output}
+\textbf{Input:}
+\begin{verbatim}
+    text: "hello world"
+    pattern: "world"
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+    match found at index: 6
+\end{verbatim}
+
+\section{Path-Finding Algorithm - Dijkstra's Algorithm}
+\label{sec:dijkstra-implementation}
+
+\subsection{Deskripsi Algoritma}
+Tuliskan penjelasan singkat tentang algoritma tersebut: cara kerja, kompleksitas waktu/ruang jika perlu, dan alasan penggunaannya secara umum.
+Algoritma Dijkstra adalah algoritma yang digunakan untuk menemukan jalur terpendek dari satu vertex ke semua vertex lainnya dalam graf berbobot. Algoritma ini bekerja dengan cara menginisialisasi jarak dari simpul awal ke semua simpul lain sebagai tak hingga, kemudian secara iteratif memperbarui jarak terpendek yang ditemukan. Kompleksitas waktu Algoritma Dijkstra adalah $\mathcal{O}\left((V + E) \log V\right)$ dengan menggunakan priority queue, di mana $V$ adalah jumlah vertex dan $E$ adalah jumlah edge. Kompleksitas ruangnya adalah $\mathcal{O}\left(V + E\right)$.
+
+\subsection{Pseudocode}
+\begin{verbatim}
+    function dijkstra(graph, start):
+        dist = array of size V initialized to infinity
+        dist[start] = 0
+        priorityQueue = min-heap containing (0, start)
+
+        while priorityQueue is not empty:
+            (currentDist, currentVertex) = extract-min(priorityQueue)
+            for each neighbor of currentVertex:
+                newDist = currentDist + weight(currentVertex, neighbor)
+                if newDist < dist[neighbor]:
+                    dist[neighbor] = newDist
+                    update priorityQueue with (newDist, neighbor)
+
+        return dist
+\end{verbatim}
+
+\subsection{Contoh Input-Output}
+\textbf{Input:}
+\begin{verbatim}
+    vertex count: 5
+    edge count: 6
+    edges: // (u, v, weight)
+    1 2 2
+    1 3 4
+    2 3 1
+    2 4 7
+    3 5 3
+    4 5 1
+    start vertex: 1
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+    shortest distances from source vertex 1:
+    vertex 1: 0
+    vertex 2: 2
+    vertex 3: 3
+    vertex 4: 7
+    vertex 5: 6
+\end{verbatim}
+
+\section{Data Compression - Huffman Coding}
+\label{sec:huffman-coding-implementation}
+
+\subsection{Deskripsi Algoritma}
+Tuliskan penjelasan singkat tentang algoritma tersebut: cara kerja, kompleksitas waktu/ruang jika perlu, dan alasan penggunaannya secara umum.
+Huffman Coding adalah algoritma kompresi data yang digunakan untuk mengurangi ukuran data dengan cara menggantikan karakter yang sering muncul dengan kode biner yang lebih pendek. Algoritma ini membangun Huffman tree berdasarkan frekuensi kemunculan karakter dalam data. Kompleksitas waktu untuk membangun pohon Huffman adalah $\mathcal{O}\left(N \log N\right)$, di mana $N$ adalah jumlah karakter unik, dan kompleksitas ruangnya adalah $\mathcal{O}\left(N\right)$.
+
+\subsection{Pseudocode}
+\begin{verbatim}
+    function huffmanCoding(frequencies):
+        create a priority queue Q
+        for each character and frequency in frequencies:
+            insert (frequency, character) into Q
+
+        while Q has more than one element:
+            (freq1, char1) = extract-min(Q)
+            (freq2, char2) = extract-min(Q)
+            newNode = createNode(freq1 + freq2, char1 + char2)
+            insert newNode into Q
+
+        return root of the Huffman tree
+
+    procedure generateCodes(node, code, codes):
+        if node is a leaf:
+            codes[node.character] = code
+            return
+        generateCodes(node.left, code + '0', codes)
+        generateCodes(node.right, code + '1', codes)
+\end{verbatim}
+
+\subsection{Contoh Input-Output}
+\textbf{Input:}
+\begin{verbatim}
+    text to compress: "aaaabbbccd"
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+    Huffman Codes:
+    'a': 0
+    'b': 10
+    'c': 111
+    'd': 110
+    Compressed text:
+    "0000101010111111110"
 \end{verbatim}
 
 % \section{[Nama Algoritma]}
